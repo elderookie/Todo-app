@@ -10,17 +10,17 @@
     <h1>ToDo リスト</h1>
     <form action="/tasks" method="POST">
         @csrf
-        <input type="text" name="title">
+        <input type="text" name="title" placeholder="新しいタスクを追加">
         <button type="submit">追加</button>
     </form>
 
-    <ul>
+    <ul style="list-style-type: none;">
         @foreach ($tasks as $task)
             <li>
                <form action="/tasks/{{ $task->id }}" method="POST" style="display: inline">
                     @csrf
                     @method('PATCH')
-                    <input type="checkbox" name="is_done" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}> 
+                    <input type="checkbox" name="is_done" {{ $task->completed ? 'checked' : '' }} onchange="this.form.submit()" > 
                 </form>
                 {{ $task->title }}
                 <form action="/tasks/{{ $task->id }}" method="POST" style="display: inline">
