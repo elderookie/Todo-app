@@ -24,3 +24,14 @@ host('3.214.41.235')
 // Hooks
 
 after('deploy:failed', 'deploy:unlock');
+
+// Tasks
+task('artisan:cache:clear', function () {
+    run('{{bin/php}} {{release_path}}/artisan cache:clear');
+    run('{{bin/php}} {{release_path}}/artisan config:clear');
+    run('{{bin/php}} {{release_path}}/artisan route:clear');
+    run('{{bin/php}} {{release_path}}/artisan view:clear');
+});
+
+after('deploy:symlink', 'artisan:cache:clear');
+
