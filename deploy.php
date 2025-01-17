@@ -39,5 +39,13 @@ task('logs:access', function () {
     run('tail -f /var/log/nginx/access.log');
 });
 
+// Add copy .env
+task('deploy:shared', function (){
+    upload('.env', '{{deploy_path}}/shared/.env');  
+});
+task('deploy:symlink', function () {
+    run('ln -nfs {{deploy_path}}/shared/.env {{deploy_path}}/current/.env');
+});
+
 after('deploy:symlink', 'artisan:cache:clear');
 
