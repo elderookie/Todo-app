@@ -33,5 +33,11 @@ task('artisan:cache:clear', function () {
     run('{{bin/php}} {{release_path}}/artisan view:clear');
 });
 
+// Add the logs:access task
+// This task now points to Nginx's default access log location
+task('logs:access', function () {
+    run('tail -f /var/log/nginx/access.log');
+});
+
 after('deploy:symlink', 'artisan:cache:clear');
 

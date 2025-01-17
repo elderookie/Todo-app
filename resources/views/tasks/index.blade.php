@@ -7,7 +7,7 @@
     <title>ToDo App</title>
 </head>
 <body>
-    <h1>ToDo リスト Version1.3</h1>
+    <h1>ToDo リスト Version1.4</h1>
     <form action="/tasks" method="POST">
         @csrf
         <input type="text" name="title" placeholder="新しいタスクを追加">
