@@ -11,9 +11,9 @@ set('application', 'todo-app');
 set('repository', 'https://github.com/elderookie/todo-app.git');
 set('deploy_path', '/var/www/todo-app');
 
-add('shared_files', ['.env']);
-add('shared_dirs', ['storage']);
-add('writable_dirs', []);
+set('shared_files', ['.env']);
+set('shared_dirs', ['storage']);
+set('writable_dirs', []);
 
 // Hosts
 host('3.214.41.235')
@@ -40,12 +40,12 @@ task('logs:access', function () {
 });
 
 // Add copy .env
-task('deploy:shared', function (){
-    upload('.env', '{{deploy_path}}/shared/.env');  
-});
-task('deploy:symlink', function () {
-    run('ln -nfs {{deploy_path}}/shared/.env {{deploy_path}}/current/.env');
-});
+// task('deploy:shared', function (){
+//     upload('.env', '{{deploy_path}}/shared/.env');  
+// });
+// task('deploy:symlink', function () {
+//     run('ln -nfs {{deploy_path}}/shared/.env {{deploy_path}}/current/.env');
+// });
 
 after('deploy:symlink', 'artisan:cache:clear');
 
