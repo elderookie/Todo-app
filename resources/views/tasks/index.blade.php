@@ -11,7 +11,7 @@
     <form action="/tasks" method="POST">
         @csrf
         <input type="text" name="title" placeholder="新しいタスクを追加">
-        <button type="submit">追加</button>
+        <button type="submit">追加</button>gi
     </form>
 
     <ul style="list-style-type: none;">
